@@ -16,7 +16,8 @@ function App() {
       {/* <EffectTutorial/> */}
       {/* <ContextTutorial/> */}
       {/* <RefTutorial/> */}
-      <LayoutEffectTutorial/>
+      {/* <LayoutEffectTutorial/> */}
+      <ReducerTutorial/>
     </div>
   );
 }

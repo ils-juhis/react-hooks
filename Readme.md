@@ -46,32 +46,37 @@ Here is an example of how to use the useRef hook to store the current value of a
 
 
 ## 4. useContext
-The useLayoutEffect hook in React is similar to the useEffect hook, but it runs synchronously after all DOM mutations. This can be useful for performing layout calculations or updating the DOM after the component has rendered.
+* React Context is a way to manage state globally.
+* It can be used together with the useState Hook to share state between deeply nested components more easily than with useState alone.
 
-The useLayoutEffect hook takes two arguments:
+    import React, { useContext } from "react";
 
-* The first argument is a callback function that will be called after the component renders.
-* The second argument is an optional array of dependencies. The callback function will only be called if any of the dependencies change.
-Here is an example of how to use the useLayoutEffect hook to perform a layout calculation:
-
-    import React, { useLayoutEffect } from "react";
+    const ThemeContext = createContext();
 
     const App = () => {
-        const [width, setWidth] = useState(0);
+    const theme = useContext(ThemeContext);
 
-        useLayoutEffect(() => {
-            const el = document.getElementById("my-element");
-            setWidth(el.offsetWidth);
-        }, []);
-
-        return (
-            <div id="my-element" />
-        );
+    return (
+        <div>
+        The current theme is {theme}
+        </div>
+    );
     };
+
+    const ThemeProvider = ({ children }) => {
+    const [theme, setTheme] = useState("light");
+
+    return (
+        <ThemeContext.Provider value={theme}>
+        {children}
+        </ThemeContext.Provider>
+    );
+    };
+
+export default App;
 
 
 ## 5. useLayoutEffect
-
 The useLayoutEffect hook in React is similar to the useEffect hook, but it runs synchronously after all DOM mutations. This can be useful for performing layout calculations or updating the DOM after the component has rendered.
 
 The useLayoutEffect hook takes two arguments:
@@ -94,3 +99,14 @@ Here is an example of how to use the useLayoutEffect hook to perform a layout ca
             <div id="my-element" />
         );
     };
+
+
+## 6. useReducer
+* The useReducer Hook is similar to the useState Hook.
+* It allows for custom state logic.
+* If you find yourself keeping track of multiple pieces of state that rely on complex logic, useReducer may be useful.
+
+#### SYNTAX:   const [state, dispatch] = useReducer(reducer, { count: 0, showText: true });
+
+
+## 7. useCallback
