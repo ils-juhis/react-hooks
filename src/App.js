@@ -11,7 +11,8 @@ import CallBackTutorial from "./UseCallback/CallbackTutorial";
 function App() {
   return (
     <div className="App">
-      <StateTutorial />
+      {/* <StateTutorial /> */}
+      <EffectTutorial/>
     </div>
   );
 }
