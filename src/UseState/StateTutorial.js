@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const StateTutorial = () => {
-  const [inputValue, setInputValue] = useState("Pedro");
-
-  let onChange = (event) => {
-    const newValue = event.target.value;
-    setInputValue(newValue);
-  };
+  const [count, setCount] = useState(0);
 
   return (
-    <div>
-      <input placeholder="enter something..." onChange={onChange} />
-      {inputValue}
-    </div>
+    <>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount((c) => c + 1)}>+</button>
+    </>
   );
 };
 
