@@ -1,31 +1,26 @@
-import axios from "axios";
 import { useCallback, useState } from "react";
-import Child from "./Child";
+import Todos from "./Todos";
 
 export default function CallBackTutorial() {
-  const [toggle, setToggle] = useState(false);
-  const [data, setData] = useState("Yo, pls sub to the channel!");
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState([]);
 
-  const returnComment = useCallback(
-    (name) => {
-      return data + name;
-    },
-    [data]
-  );
+  const increment = () => {
+    setCount((c) => c + 1);
+  };
+  const addTodo = useCallback(() => {
+    setTodos((t) => [...t, "New Todo"]);
+  }, []);
 
   return (
-    <div className="App">
-      <Child returnComment={returnComment} />
+    <>
+      <Todos todos={todos} addTodo={addTodo} />
+      <hr />
+      <div>
+        Count: {count}
+        <button onClick={increment}>+</button>
+      </div>
+    </>
 
-      <button
-        onClick={() => {
-          setToggle(!toggle);
-        }}
-      >
-        {" "}
-        Toggle
-      </button>
-      {toggle && <h1> toggle </h1>}
-    </div>
   );
 }
