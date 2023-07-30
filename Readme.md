@@ -126,3 +126,24 @@ we can't use useEffect because it does not return value.
 
 
 ## 8. useCallback
+
+## React.memo
+
+React Memo is a higher-order component (HOC) that can be used to memoize the output of a functional component. This can improve performance by preventing unnecessary re-renderings when the props of the component do not change.
+When React renders MyComponent, it will compare the props passed to the component with the props that were passed to the component the last time it rendered. If the props are the same, React will not re-render the component. This can save a significant amount of time, especially if the component is expensive to render.
+React Memo only memoizes the output of the component. If the component's props change, but the component's state or context does not change, the component will still re-render.
+
+** It can introduce unexpected side effects if you are not careful. For example, if you are using React Memo to memoize a component that renders a child component, the child component will not be re-rendered if the props of the parent component change. This can lead to unexpected behavior if the child component depends on the props of the parent component.
+
+React.memo will not work if you pass a function in prop if you do not use the second argument to indicate an equality check function. This is because React.memo only compares the props passed to the component with the props that were passed to the component the last time it rendered using a shallow comparison. If you pass a function as a prop, React will compare the references of the functions, which will always be different because function gets recreate after rerender in react.
+
+
+
+## Referential Equality
+* Referential equality in React is a comparison of two objects based on their memory location. If two objects have the same memory location, they are considered equal. If they have different memory locations, they are considered different.
+
+* Referential equality is used by React to determine whether a component should be re-rendered. If the props passed to a component change, but the objects that represent the props are the same, React will not re-render the component. This is because the component's state will not have changed, and there is no need to update the UI.
+
+* However, there are some cases where referential equality can lead to unexpected behavior. For example, if you change the value of a property on an object, the object will still be considered equal to the old object. This is because the memory location of the object has not changed.
+
+* To avoid this problem, you can use the Object.is() function to compare objects. The Object.is() function compares two objects based on their values, not their memory location. This means that if you change the value of a property on an object, the object will no longer be considered equal to the old object.

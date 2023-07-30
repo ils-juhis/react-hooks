@@ -17,7 +17,8 @@ function App() {
       {/* <RefTutorial/> */}
       {/* <LayoutEffectTutorial/> */}
       {/* <ReducerTutorial/> */}
-      <MemoTutorial/>
+      {/* <MemoTutorial/> */}
+      <CallBackTutorial/>
     </div>
   );
 }
