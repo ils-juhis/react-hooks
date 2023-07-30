@@ -126,6 +126,10 @@ we can't use useEffect because it does not return value.
 
 
 ## 8. useCallback
+* useCallback is a React Hook that lets you cache a function definition between re-renders.
+* On the initial render, useCallback returns the fn function you have passed.
+* During subsequent renders, it will either return an already stored fn  function from the last render (if the dependencies haven’t changed), or return the fn function you have passed during this render.
+
 
 ## React.memo
 
@@ -135,7 +139,7 @@ React Memo only memoizes the output of the component. If the component's props c
 
 ** It can introduce unexpected side effects if you are not careful. For example, if you are using React Memo to memoize a component that renders a child component, the child component will not be re-rendered if the props of the parent component change. This can lead to unexpected behavior if the child component depends on the props of the parent component.
 
-React.memo will not work if you pass a function in prop if you do not use the second argument to indicate an equality check function. This is because React.memo only compares the props passed to the component with the props that were passed to the component the last time it rendered using a shallow comparison. If you pass a function as a prop, React will compare the references of the functions, which will always be different because function gets recreate after rerender in react.
+React.memo will not work if you pass a function in prop if you do not use the second argument to indicate an equality check function. This is because React.memo only compares the props passed to the component with the props that were passed to the component the last time it rendered using a shallow comparison. If you pass a function as a prop, React will compare the references of the functions, which will always be different because function gets recreate after rerender in react. To slove this problem we use useCallback 
 
 
 
