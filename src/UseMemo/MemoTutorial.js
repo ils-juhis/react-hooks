@@ -1,49 +1,40 @@
-import axios from "axios";
-import { useEffect, useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 
-export default function MemoTutorial() {
-  const [data, setData] = useState(null);
-  const [toggle, setToggle] = useState(false);
+const MemoTutorial = () => {
+  const [myNum, setMyNum] = useState(0);
+  const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/comments")
-      .then((response) => {
-        setData(response.data);
-      });
-  }, []);
-
-  const findLongestName = (comments) => {
-    if (!comments) return null;
-
-    let longestName = "";
-    for (let i = 0; i < comments.length; i++) {
-      let currentName = comments[i].name;
-      if (currentName.length > longestName.length) {
-        longestName = currentName;
-      }
-    }
-
-    console.log("THIS WAS COMPUTED");
-
-    return longestName;
+  const getValue = () => {
+    return setMyNum(myNum + 1);
   };
 
-  const getLongestName = useMemo(() => findLongestName(data), [toggle]);
+  const countNumber = (num) => {
+    console.log("🚀 ~ file: Memo.jsx ~ line 12 ~ countNumber ~ num", num);
+    for (let i = 0; i <= 1000000000; i++) {}
+    return num;
+  };
+
+  // subscribe to thapa technical
+
+  const checkData = useMemo(() => {
+    console.log("Memo called")
+    return countNumber(myNum);
+  }, [myNum]);
+
+  console.log("parent")
+
 
   return (
-    <div className="App">
-      <div> {getLongestName} </div>
-
-      <button
-        onClick={() => {
-          setToggle(!toggle);
-        }}
-      >
-        {" "}
-        Toggle
+    <>
+      <button onClick={getValue} style={{ backgroundColor: "red" }}>
+        Counter
       </button>
-      {toggle && <h1> toggle </h1>}
-    </div>
+      <p> My new number : {checkData} </p>
+      <button onClick={() => setShow(!show)}>
+        {show ? "You clicked me" : "Click me plz"}
+      </button>
+    </>
   );
-}
+};
+
+export default MemoTutorial;

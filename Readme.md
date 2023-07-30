@@ -26,34 +26,36 @@ This can be useful for storing things like the current value of a slider, the fo
 
 Here is an example of how to use the useRef hook to store the current value of a slider:
 
-    import React, { useRef } from "react";
-    
-    const App = () => {
-        const sliderRef = useRef(0);
-        
-        function handleChange(event) {
-            sliderRef.current = event.target.value;
-        }
-        
-        return (
-            <div>
-            <input type="range" ref={sliderRef} />
-            <h1>The current value is {sliderRef.current}</h1>
-            </div>
-        );
-    };
-    export default App;
+```
+import React, { useRef } from "react";
 
+const App = () => {
+    const sliderRef = useRef(0);
+    
+    function handleChange(event) {
+        sliderRef.current = event.target.value;
+    }
+    
+    return (
+        <div>
+        <input type="range" ref={sliderRef} />
+        <h1>The current value is {sliderRef.current}</h1>
+        </div>
+    );
+};
+export default App;
+```
 
 ## 4. useContext
 * React Context is a way to manage state globally.
 * It can be used together with the useState Hook to share state between deeply nested components more easily than with useState alone.
 
-    import React, { useContext } from "react";
+```
+import React, { useContext } from "react";
 
-    const ThemeContext = createContext();
+const ThemeContext = createContext();
 
-    const App = () => {
+const App = () => {
     const theme = useContext(ThemeContext);
 
     return (
@@ -71,9 +73,10 @@ Here is an example of how to use the useRef hook to store the current value of a
         {children}
         </ThemeContext.Provider>
     );
-    };
+};
 
 export default App;
+```
 
 
 ## 5. useLayoutEffect
@@ -85,21 +88,22 @@ The useLayoutEffect hook takes two arguments:
 * The second argument is an optional array of dependencies. The callback function will only be called if any of the dependencies change.
 Here is an example of how to use the useLayoutEffect hook to perform a layout calculation:
 
-    import React, { useLayoutEffect } from "react";
+```
+import React, { useLayoutEffect } from "react";
 
-    const App = () => {
-        const [width, setWidth] = useState(0);
+const App = () => {
+    const [width, setWidth] = useState(0);
 
-        useLayoutEffect(() => {
-            const el = document.getElementById("my-element");
-            setWidth(el.offsetWidth);
-        }, []);
+    useLayoutEffect(() => {
+        const el = document.getElementById("my-element");
+        setWidth(el.offsetWidth);
+    }, []);
 
-        return (
-            <div id="my-element" />
-        );
-    };
-
+    return (
+        <div id="my-element" />
+    );
+};
+```
 
 ## 6. useReducer
 * The useReducer Hook is similar to the useState Hook.
@@ -109,4 +113,16 @@ Here is an example of how to use the useLayoutEffect hook to perform a layout ca
 #### SYNTAX:   const [state, dispatch] = useReducer(reducer, { count: 0, showText: true });
 
 
-## 7. useCallback
+## 7. useMemo
+useMemo is a React hook that allows you to cache the result of a calculation between re-renders. This can be used to improve performance by avoiding the need to re-calculate expensive functions on every render.
+
+The useMemo hook takes two arguments:
+
+1. A function that returns the value to be memoized.
+2. An array of dependencies.
+
+The function passed to useMemo will only be called if one of the dependencies changes. The memoized value will then be returned on subsequent renders, even if the dependencies do not change.
+we can't use useEffect because it does not return value.
+
+
+## 8. useCallback

@@ -1,26 +1,29 @@
-import { useCallback, useState } from "react";
-import Todos from "./Todos";
+import React, { useState, useCallback } from 'react'
+import Count from './Count'
+import Button from './Button'
+import Title from './Title'
 
-export default function CallBackTutorial() {
-  const [count, setCount] = useState(0);
-  const [todos, setTodos] = useState([]);
+function CallbackTutorial() {
+	const [age, setAge] = useState(25)
+	const [salary, setSalary] = useState(50000)
 
-  const increment = () => {
-    setCount((c) => c + 1);
-  };
-  const addTodo = useCallback(() => {
-    setTodos((t) => [...t, "New Todo"]);
-  }, []);
+	const incrementAge = useCallback(() => {
+		setAge(age + 1)
+	}, [age])
 
-  return (
-    <>
-      <Todos todos={todos} addTodo={addTodo} />
-      <hr />
-      <div>
-        Count: {count}
-        <button onClick={increment}>+</button>
-      </div>
-    </>
+	const incrementSalary = useCallback(() => {
+		setSalary(salary + 1000)
+	}, [salary])
 
-  );
+	return (
+		<div>
+			<Title />
+			<Count text="Age" count={age} />
+			<Button handleClick={incrementAge}>Increment Age</Button>
+			<Count text="Salary" count={salary} />
+			<Button handleClick={incrementSalary}>Increment Salary</Button>
+		</div>
+	)
 }
+
+export default CallbackTutorial
